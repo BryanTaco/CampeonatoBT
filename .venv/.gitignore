@@ -1,0 +1,56 @@
+# Entornos virtuales
+env/
+venv/
+ENV/
+.venv/
+*.pyc
+__pycache__/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración del editor
+.vscode/
+.idea/
+
+# Archivos de base de datos (si usas SQLite)
+*.sqlite3
+
+# Archivos de migraciones innecesarios (opcional)
+*/migrations/__pycache__/
+*/migrations/*.pyc
+
+# Archivos de log
+*.log
+
+# Archivos de entorno (variables sensibles)
+.env
+*.env
+
+# Archivos de compilación
+*.pot
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de caché
+*.cache
+
+# Archivos estáticos y media (opcional según configuración)
+staticfiles/
+media/
+
+# Archivos de cobertura de pruebas
+htmlcov/
+.coverage
+.tox/
+coverage.xml
+nosetests.xml
+*.cover
+.pytest_cache/
+
+# Archivos de compilación JS/CSS (si usas npm o yarn)
+node_modules/
+dist/
+build/

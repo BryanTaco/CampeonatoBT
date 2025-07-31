@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Gestor de Campeonatos{% endblock %}</title>
+    
+    <!-- CSS principal -->
+    <link rel="stylesheet" href="{% static 'campeonato_app/css/styles.css' %}" />
+    <!-- FontAwesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papb+6X+6Q6XQ6XQ6XQ6XQ6XQ6XQ6XQ6XQ6XQ6XQ6XQ6XQ6XQ6XQ6XQ6XQ6XQ6XQ6XQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <a href="{% url 'home' %}" class="logo">Campeonatos Fútbol</a>
+    <ul class="nav-links">
+        <li><a href="{% url 'equipos' %}">Equipos</a></li>
+        <li><a href="{% url 'jugadores' %}">Jugadores</a></li>
+        <li><a href="{% url 'partidos' %}">Partidos</a></li>
+        <li><a href="{% url 'reportes' %}">Estadísticas</a></li>
+        {% if user.is_authenticated and user.groups.all|length > 0 and user.groups.all.0.name == 'admin' %}
+            <li>
+                <a href="{% url 'superuser_validation' %}" title="Validar Superusuario" class="superuser-btn">
+                    <i class="fas fa-user-shield"></i> Validar Superusuario
+                </a>
+            </li>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <li><a href="#">Hola, {{ user.username }}</a></li>
+            <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+        {% else %}
+            <li><a href="{% url 'login' %}">Iniciar sesión</a></li>
+        {% endif %}
+    </ul>
+            </div>
+</nav>
+
+<style>
+.superuser-btn {
+    color: #ffc107;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+.superuser-btn i {
+    font-size: 1.1rem;
+}
+</style>
+</header>
+
+    <main class="container" style="position: relative; background: url('{% static "campeonato_app/img/football_icon.svg" %}') no-repeat top right; background-size: 150px 150px;">
+        {% block content %}
+        <!-- Contenido específico de cada página -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Campeonato de Fútbol - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <!-- JS principal -->
+    <script src="{% static 'campeonato_app/js/main.js' %}"></script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
